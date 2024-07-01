@@ -1,0 +1,40 @@
+.pdf-container {
+    width: 100%;
+    padding: 0 2em;
+    max-height: 100%;
+    overflow: scroll;
+}
+
+.pdf-container .react-pdf__Document {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pdf-container .react-pdf__Page {
+    box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.5);
+}
+
+.pdf-container .page-wrapper {
+    margin: 16px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.pdf-container .react-pdf__Document > .react-pdf__Page + .react-pdf__Page {
+    margin-top: 0;
+}
+
+.pdf-container .react-pdf__message {
+    margin: 20px;
+    color: white;
+}
+
+.controls-container {
+    position: absolute;
+    right: 0;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+}
