@@ -1,0 +1,583 @@
+Name:             api-d-135e6d25-2323-4675-907b-c84da31e0db0-594f86bcd5-hmt72
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             scw-contentgrid-rtp-scw-sa-pool-eager-g-c8518a/172.16.16.7
+Start Time:       Tue, 18 Jun 2024 17:44:58 +0200
+Labels:           app.contentgrid.com/deployment-id=135e6d25-2323-4675-907b-c84da31e0db0
+                  app.contentgrid.com/service-type=api
+                  app.kubernetes.io/managed-by=contentgrid
+                  captain.contentgrid.com/resource-id=f9a3cca2-e55f-4bc0-9ec0-56b5d210d3e0
+                  pod-template-hash=594f86bcd5
+Annotations:      kubectl.kubernetes.io/restartedAt: 2024-06-18T17:44:58+02:00
+Status:           Running
+IP:               100.64.1.253
+IPs:
+  IP:           100.64.1.253
+Controlled By:  ReplicaSet/api-d-135e6d25-2323-4675-907b-c84da31e0db0-594f86bcd5
+Init Containers:
+  api-initcontainer:
+    Container ID:   containerd://ec69c39a9b590c475949b17219baac92bddff39a687a3ba5050eef29259ec12e
+    Image:          rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/books-api:0.0.1-SNAPSHOT-1718002912
+    Image ID:       rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/books-api@sha256:3e1db4dc6c315de4cd6081b7d1b3c68c4469da3505d5b17b0a68ea173b7f954d
+    Port:           <none>
+    Host Port:      <none>
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Tue, 18 Jun 2024 17:45:00 +0200
+      Finished:     Tue, 18 Jun 2024 17:45:40 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      SPRING_CONFIG_IMPORT:              configtree:/etc/app/config/*/
+      SPRING_PROFILES_ACTIVE:            initContainer
+      CONTENTGRID_SYSTEM_DEPLOYMENTID:   135e6d25-2323-4675-907b-c84da31e0db0
+      CONTENTGRID_SYSTEM_APPLICATIONID:  f9a3cca2-e55f-4bc0-9ec0-56b5d210d3e0
+    Mounts:
+      /etc/app/config/db from app-db-secrets (ro)
+      /etc/app/config/runtime from rtp-shared-config (ro)
+Containers:
+  api:
+    Container ID:   containerd://bc8448c71a5434e54723d1aa40de61de3984efbce290f7616a628dd01e07b4ff
+    Image:          rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/books-api:0.0.1-SNAPSHOT-1718002912
+    Image ID:       rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/books-api@sha256:3e1db4dc6c315de4cd6081b7d1b3c68c4469da3505d5b17b0a68ea173b7f954d
+    Ports:          8080/TCP, 8081/TCP
+    Host Ports:     0/TCP, 0/TCP
+    State:          Running
+      Started:      Tue, 18 Jun 2024 17:45:41 +0200
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     1
+      memory:  768Mi
+    Requests:
+      cpu:      5m
+      memory:   64Mi
+    Liveness:   http-get http://:management/actuator/health/liveness delay=0s timeout=1s period=10s #success=1 #failure=3
+    Readiness:  http-get http://:management/actuator/health/readiness delay=0s timeout=1s period=10s #success=1 #failure=3
+    Startup:    http-get http://:management/actuator/health/liveness delay=0s timeout=1s period=5s #success=1 #failure=60
+    Environment:
+      SPRING_CONFIG_IMPORT:                 configtree:/etc/app/config/*/
+      CONTENTGRID_SYSTEM_DEPLOYMENTID:      135e6d25-2323-4675-907b-c84da31e0db0
+      CONTENTGRID_SYSTEM_APPLICATIONID:     f9a3cca2-e55f-4bc0-9ec0-56b5d210d3e0
+      CONTENTGRID_SYSTEM_POLICYPACKAGE:     contentgrid.userapps.x135e6d2523234675907bc84da31e0db0
+      AWS_REGION:                           <set to the key 'spring.content.s3.region' in secret 'f9a3cca2-e55f-4bc0-9ec0-56b5d210d3e0-obj'>  Optional: false
+      CONTENTGRID_EVENTS_WEBHOOKCONFIGURL:  http://api-d-135e6d25-2323-4675-907b-c84da31e0db0.default.svc.cluster.local:8081/actuator/webhooks
+    Mounts:
+      /etc/app/config/db from app-db-secrets (ro)
+      /etc/app/config/objectstorage from app-objectstorage-secrets (ro)
+      /etc/app/config/runtime from rtp-shared-config (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  rtp-shared-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      runtime-platform-config
+    Optional:  true
+  app-db-secrets:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  f9a3cca2-e55f-4bc0-9ec0-56b5d210d3e0-db
+    Optional:    false
+  app-objectstorage-secrets:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  f9a3cca2-e55f-4bc0-9ec0-56b5d210d3e0-obj
+    Optional:    false
+QoS Class:       Burstable
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:          <none>
+
+
+Name:             api-d-5230295d-8b80-4eae-89fa-507d3e2bbc8f-f9c69f6dd-8hpgm
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             scw-contentgrid-rtp-scw-sa-pool-eager-g-f9cb42/172.16.16.6
+Start Time:       Mon, 10 Jun 2024 16:31:22 +0200
+Labels:           app.contentgrid.com/deployment-id=5230295d-8b80-4eae-89fa-507d3e2bbc8f
+                  app.contentgrid.com/service-type=api
+                  app.kubernetes.io/managed-by=contentgrid
+                  captain.contentgrid.com/resource-id=2749409e-5ab1-4367-a3e8-c753fc4130c4
+                  pod-template-hash=f9c69f6dd
+Annotations:      kubectl.kubernetes.io/restartedAt: 2024-04-30T09:41:11+02:00
+Status:           Running
+IP:               100.64.5.231
+IPs:
+  IP:           100.64.5.231
+Controlled By:  ReplicaSet/api-d-5230295d-8b80-4eae-89fa-507d3e2bbc8f-f9c69f6dd
+Init Containers:
+  api-initcontainer:
+    Container ID:   containerd://3a069d7dd34f75de1bf5a2e7d817d19ea1af0bee00290ee5bef0e38962d4f760
+    Image:          rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/test-api:0.0.1-SNAPSHOT-1712921571
+    Image ID:       rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/test-api@sha256:ab30122f827d5aeb9024e37516de5c7dc57dd45d137e6942489b0c89de63f42b
+    Port:           <none>
+    Host Port:      <none>
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Mon, 10 Jun 2024 16:31:23 +0200
+      Finished:     Mon, 10 Jun 2024 16:31:43 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      SPRING_CONFIG_IMPORT:              configtree:/etc/app/config/*/
+      SPRING_PROFILES_ACTIVE:            initContainer
+      CONTENTGRID_SYSTEM_DEPLOYMENTID:   5230295d-8b80-4eae-89fa-507d3e2bbc8f
+      CONTENTGRID_SYSTEM_APPLICATIONID:  2749409e-5ab1-4367-a3e8-c753fc4130c4
+    Mounts:
+      /etc/app/config/db from app-db-secrets (ro)
+      /etc/app/config/runtime from rtp-shared-config (ro)
+Containers:
+  api:
+    Container ID:   containerd://bdb68838b1bdeba49146b711600bc3963542266b5fc0f1273a8f9b5ac652b041
+    Image:          rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/test-api:0.0.1-SNAPSHOT-1712921571
+    Image ID:       rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/test-api@sha256:ab30122f827d5aeb9024e37516de5c7dc57dd45d137e6942489b0c89de63f42b
+    Ports:          8080/TCP, 8081/TCP
+    Host Ports:     0/TCP, 0/TCP
+    State:          Running
+      Started:      Mon, 10 Jun 2024 16:31:52 +0200
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     1
+      memory:  768Mi
+    Requests:
+      cpu:      5m
+      memory:   64Mi
+    Liveness:   http-get http://:management/actuator/health/liveness delay=0s timeout=1s period=10s #success=1 #failure=3
+    Readiness:  http-get http://:management/actuator/health/readiness delay=0s timeout=1s period=10s #success=1 #failure=3
+    Startup:    http-get http://:management/actuator/health/liveness delay=0s timeout=1s period=5s #success=1 #failure=60
+    Environment:
+      SPRING_CONFIG_IMPORT:                 configtree:/etc/app/config/*/
+      CONTENTGRID_SYSTEM_DEPLOYMENTID:      5230295d-8b80-4eae-89fa-507d3e2bbc8f
+      CONTENTGRID_SYSTEM_APPLICATIONID:     2749409e-5ab1-4367-a3e8-c753fc4130c4
+      CONTENTGRID_SYSTEM_POLICYPACKAGE:     contentgrid.userapps.x5230295d8b804eae89fa507d3e2bbc8f
+      AWS_REGION:                           <set to the key 'spring.content.s3.region' in secret '2749409e-5ab1-4367-a3e8-c753fc4130c4-obj'>  Optional: false
+      CONTENTGRID_EVENTS_WEBHOOKCONFIGURL:  http://api-d-5230295d-8b80-4eae-89fa-507d3e2bbc8f.default.svc.cluster.local:8081/actuator/webhooks
+    Mounts:
+      /etc/app/config/db from app-db-secrets (ro)
+      /etc/app/config/objectstorage from app-objectstorage-secrets (ro)
+      /etc/app/config/runtime from rtp-shared-config (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  rtp-shared-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      runtime-platform-config
+    Optional:  true
+  app-db-secrets:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  2749409e-5ab1-4367-a3e8-c753fc4130c4-db
+    Optional:    false
+  app-objectstorage-secrets:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  2749409e-5ab1-4367-a3e8-c753fc4130c4-obj
+    Optional:    false
+QoS Class:       Burstable
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:          <none>
+
+
+Name:             api-d-54783f52-4179-4d49-a60f-dbb93c84eb2e-86c9b944f9-p7hns
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             scw-contentgrid-rtp-scw-sa-pool-eager-g-c8518a/172.16.16.7
+Start Time:       Tue, 18 Jun 2024 17:45:02 +0200
+Labels:           app.contentgrid.com/deployment-id=54783f52-4179-4d49-a60f-dbb93c84eb2e
+                  app.contentgrid.com/service-type=api
+                  app.kubernetes.io/managed-by=contentgrid
+                  captain.contentgrid.com/resource-id=7116aa1d-8e35-47e6-94a5-9fe276e001dc
+                  pod-template-hash=86c9b944f9
+Annotations:      kubectl.kubernetes.io/restartedAt: 2024-06-18T17:45:02+02:00
+Status:           Running
+IP:               100.64.1.153
+IPs:
+  IP:           100.64.1.153
+Controlled By:  ReplicaSet/api-d-54783f52-4179-4d49-a60f-dbb93c84eb2e-86c9b944f9
+Init Containers:
+  api-initcontainer:
+    Container ID:   containerd://7b8cc17cbceb5efa0f33c05678be8a6ab2ed93de6ff8bbc72b7b98a8a6e58777
+    Image:          rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/testcaptain-api:0.0.1-SNAPSHOT-1718115576
+    Image ID:       rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/testcaptain-api@sha256:0715091dcd6a07cd995782eb4e34f7ac98b78d3190c44993e8c4f478b34a91a4
+    Port:           <none>
+    Host Port:      <none>
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Tue, 18 Jun 2024 17:45:04 +0200
+      Finished:     Tue, 18 Jun 2024 17:45:40 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      SPRING_CONFIG_IMPORT:              configtree:/etc/app/config/*/
+      SPRING_PROFILES_ACTIVE:            initContainer
+      CONTENTGRID_SYSTEM_DEPLOYMENTID:   54783f52-4179-4d49-a60f-dbb93c84eb2e
+      CONTENTGRID_SYSTEM_APPLICATIONID:  7116aa1d-8e35-47e6-94a5-9fe276e001dc
+    Mounts:
+      /etc/app/config/db from app-db-secrets (ro)
+      /etc/app/config/runtime from rtp-shared-config (ro)
+Containers:
+  api:
+    Container ID:   containerd://dff324b0115f2f1ca4279cf1d21354ac2cb1bd6e93529ea532067c046d5b8736
+    Image:          rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/testcaptain-api:0.0.1-SNAPSHOT-1718115576
+    Image ID:       rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/testcaptain-api@sha256:0715091dcd6a07cd995782eb4e34f7ac98b78d3190c44993e8c4f478b34a91a4
+    Ports:          8080/TCP, 8081/TCP
+    Host Ports:     0/TCP, 0/TCP
+    State:          Running
+      Started:      Tue, 18 Jun 2024 17:45:41 +0200
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     1
+      memory:  768Mi
+    Requests:
+      cpu:      5m
+      memory:   64Mi
+    Liveness:   http-get http://:management/actuator/health/liveness delay=0s timeout=1s period=10s #success=1 #failure=3
+    Readiness:  http-get http://:management/actuator/health/readiness delay=0s timeout=1s period=10s #success=1 #failure=3
+    Startup:    http-get http://:management/actuator/health/liveness delay=0s timeout=1s period=5s #success=1 #failure=60
+    Environment:
+      SPRING_CONFIG_IMPORT:                 configtree:/etc/app/config/*/
+      CONTENTGRID_SYSTEM_DEPLOYMENTID:      54783f52-4179-4d49-a60f-dbb93c84eb2e
+      CONTENTGRID_SYSTEM_APPLICATIONID:     7116aa1d-8e35-47e6-94a5-9fe276e001dc
+      CONTENTGRID_SYSTEM_POLICYPACKAGE:     contentgrid.userapps.x54783f5241794d49a60fdbb93c84eb2e
+      AWS_REGION:                           <set to the key 'spring.content.s3.region' in secret '7116aa1d-8e35-47e6-94a5-9fe276e001dc-obj'>  Optional: false
+      CONTENTGRID_EVENTS_WEBHOOKCONFIGURL:  http://api-d-54783f52-4179-4d49-a60f-dbb93c84eb2e.default.svc.cluster.local:8081/actuator/webhooks
+    Mounts:
+      /etc/app/config/db from app-db-secrets (ro)
+      /etc/app/config/objectstorage from app-objectstorage-secrets (ro)
+      /etc/app/config/runtime from rtp-shared-config (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  rtp-shared-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      runtime-platform-config
+    Optional:  true
+  app-db-secrets:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  7116aa1d-8e35-47e6-94a5-9fe276e001dc-db
+    Optional:    false
+  app-objectstorage-secrets:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  7116aa1d-8e35-47e6-94a5-9fe276e001dc-obj
+    Optional:    false
+QoS Class:       Burstable
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:          <none>
+
+
+Name:             api-d-8de93c43-9d2c-4eed-b139-45c7fd35c925-54f566cf9c-vvcjs
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             scw-contentgrid-rtp-scw-sa-pool-eager-g-645620/172.16.16.13
+Start Time:       Tue, 18 Jun 2024 17:44:50 +0200
+Labels:           app.contentgrid.com/deployment-id=8de93c43-9d2c-4eed-b139-45c7fd35c925
+                  app.contentgrid.com/service-type=api
+                  app.kubernetes.io/managed-by=contentgrid
+                  captain.contentgrid.com/resource-id=fdd4dfac-8775-4615-a91d-0859bf4f40db
+                  pod-template-hash=54f566cf9c
+Annotations:      kubectl.kubernetes.io/restartedAt: 2024-06-18T17:44:50+02:00
+Status:           Running
+IP:               100.64.4.30
+IPs:
+  IP:           100.64.4.30
+Controlled By:  ReplicaSet/api-d-8de93c43-9d2c-4eed-b139-45c7fd35c925-54f566cf9c
+Init Containers:
+  api-initcontainer:
+    Container ID:   containerd://5b28c7f5d32e1be080140cfc23a7e6a68b0e3c9c0dc9ab7e0110bee0397eab96
+    Image:          rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/dcm-api:0.0.1-SNAPSHOT-1718030974
+    Image ID:       rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/dcm-api@sha256:1e614858698d48fbb882f052b966c96110f7a8070f77b66353b2a0c38c9cc2d3
+    Port:           <none>
+    Host Port:      <none>
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Tue, 18 Jun 2024 17:44:51 +0200
+      Finished:     Tue, 18 Jun 2024 17:45:13 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      SPRING_CONFIG_IMPORT:              configtree:/etc/app/config/*/
+      SPRING_PROFILES_ACTIVE:            initContainer
+      CONTENTGRID_SYSTEM_DEPLOYMENTID:   8de93c43-9d2c-4eed-b139-45c7fd35c925
+      CONTENTGRID_SYSTEM_APPLICATIONID:  fdd4dfac-8775-4615-a91d-0859bf4f40db
+    Mounts:
+      /etc/app/config/db from app-db-secrets (ro)
+      /etc/app/config/runtime from rtp-shared-config (ro)
+Containers:
+  api:
+    Container ID:   containerd://6511923a500b149ca071d9eba24e23fe3ee92f2b1e4a95bece7b70ddcc41bab2
+    Image:          rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/dcm-api:0.0.1-SNAPSHOT-1718030974
+    Image ID:       rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/dcm-api@sha256:1e614858698d48fbb882f052b966c96110f7a8070f77b66353b2a0c38c9cc2d3
+    Ports:          8080/TCP, 8081/TCP
+    Host Ports:     0/TCP, 0/TCP
+    State:          Running
+      Started:      Tue, 18 Jun 2024 17:45:14 +0200
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     1
+      memory:  768Mi
+    Requests:
+      cpu:      5m
+      memory:   64Mi
+    Liveness:   http-get http://:management/actuator/health/liveness delay=0s timeout=1s period=10s #success=1 #failure=3
+    Readiness:  http-get http://:management/actuator/health/readiness delay=0s timeout=1s period=10s #success=1 #failure=3
+    Startup:    http-get http://:management/actuator/health/liveness delay=0s timeout=1s period=5s #success=1 #failure=60
+    Environment:
+      SPRING_CONFIG_IMPORT:                 configtree:/etc/app/config/*/
+      CONTENTGRID_SYSTEM_DEPLOYMENTID:      8de93c43-9d2c-4eed-b139-45c7fd35c925
+      CONTENTGRID_SYSTEM_APPLICATIONID:     fdd4dfac-8775-4615-a91d-0859bf4f40db
+      CONTENTGRID_SYSTEM_POLICYPACKAGE:     contentgrid.userapps.x8de93c439d2c4eedb13945c7fd35c925
+      AWS_REGION:                           <set to the key 'spring.content.s3.region' in secret 'fdd4dfac-8775-4615-a91d-0859bf4f40db-obj'>  Optional: false
+      CONTENTGRID_EVENTS_WEBHOOKCONFIGURL:  http://api-d-8de93c43-9d2c-4eed-b139-45c7fd35c925.default.svc.cluster.local:8081/actuator/webhooks
+    Mounts:
+      /etc/app/config/db from app-db-secrets (ro)
+      /etc/app/config/objectstorage from app-objectstorage-secrets (ro)
+      /etc/app/config/runtime from rtp-shared-config (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  rtp-shared-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      runtime-platform-config
+    Optional:  true
+  app-db-secrets:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  fdd4dfac-8775-4615-a91d-0859bf4f40db-db
+    Optional:    false
+  app-objectstorage-secrets:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  fdd4dfac-8775-4615-a91d-0859bf4f40db-obj
+    Optional:    false
+QoS Class:       Burstable
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:          <none>
+
+
+Name:             api-d-fc4f113c-0145-4d6c-aa22-958c6480dca7-78d9678477-r8cnx
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             scw-contentgrid-rtp-scw-sa-pool-eager-g-752957/172.16.16.8
+Start Time:       Mon, 10 Jun 2024 16:31:31 +0200
+Labels:           app.contentgrid.com/deployment-id=fc4f113c-0145-4d6c-aa22-958c6480dca7
+                  app.contentgrid.com/service-type=api
+                  app.kubernetes.io/managed-by=contentgrid
+                  captain.contentgrid.com/resource-id=b0c48fd9-d47f-4d3f-949c-73c6d3435010
+                  pod-template-hash=78d9678477
+Annotations:      <none>
+Status:           Running
+IP:               100.64.0.118
+IPs:
+  IP:           100.64.0.118
+Controlled By:  ReplicaSet/api-d-fc4f113c-0145-4d6c-aa22-958c6480dca7-78d9678477
+Init Containers:
+  api-initcontainer:
+    Container ID:   containerd://33f3bfbcbe9074e406afbc0c73f1d46445216798a338dae12ce3ff3534d0eb38
+    Image:          rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/books-api:0.0.1-SNAPSHOT-1715354150
+    Image ID:       rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/books-api@sha256:b6a66a302200304ea640887794dc7513cbb4d0c95b713a86e4a83d9003febea2
+    Port:           <none>
+    Host Port:      <none>
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Mon, 10 Jun 2024 16:31:32 +0200
+      Finished:     Mon, 10 Jun 2024 16:32:08 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      SPRING_CONFIG_IMPORT:              configtree:/etc/app/config/*/
+      SPRING_PROFILES_ACTIVE:            initContainer
+      CONTENTGRID_SYSTEM_DEPLOYMENTID:   fc4f113c-0145-4d6c-aa22-958c6480dca7
+      CONTENTGRID_SYSTEM_APPLICATIONID:  b0c48fd9-d47f-4d3f-949c-73c6d3435010
+    Mounts:
+      /etc/app/config/db from app-db-secrets (ro)
+      /etc/app/config/runtime from rtp-shared-config (ro)
+Containers:
+  api:
+    Container ID:   containerd://a58d52b183dba5ae5ff8ad3a094595aec8776d2ad55c77029dd9bef9e767ee51
+    Image:          rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/books-api:0.0.1-SNAPSHOT-1715354150
+    Image ID:       rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/books-api@sha256:b6a66a302200304ea640887794dc7513cbb4d0c95b713a86e4a83d9003febea2
+    Ports:          8080/TCP, 8081/TCP
+    Host Ports:     0/TCP, 0/TCP
+    State:          Running
+      Started:      Mon, 10 Jun 2024 16:32:10 +0200
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     1
+      memory:  768Mi
+    Requests:
+      cpu:      5m
+      memory:   64Mi
+    Liveness:   http-get http://:management/actuator/health/liveness delay=0s timeout=1s period=10s #success=1 #failure=3
+    Readiness:  http-get http://:management/actuator/health/readiness delay=0s timeout=1s period=10s #success=1 #failure=3
+    Startup:    http-get http://:management/actuator/health/liveness delay=0s timeout=1s period=5s #success=1 #failure=60
+    Environment:
+      SPRING_CONFIG_IMPORT:                 configtree:/etc/app/config/*/
+      CONTENTGRID_SYSTEM_DEPLOYMENTID:      fc4f113c-0145-4d6c-aa22-958c6480dca7
+      CONTENTGRID_SYSTEM_APPLICATIONID:     b0c48fd9-d47f-4d3f-949c-73c6d3435010
+      CONTENTGRID_SYSTEM_POLICYPACKAGE:     contentgrid.userapps.xfc4f113c01454d6caa22958c6480dca7
+      AWS_REGION:                           <set to the key 'spring.content.s3.region' in secret 'b0c48fd9-d47f-4d3f-949c-73c6d3435010-obj'>  Optional: false
+      CONTENTGRID_EVENTS_WEBHOOKCONFIGURL:  http://api-d-fc4f113c-0145-4d6c-aa22-958c6480dca7.default.svc.cluster.local:8081/actuator/webhooks
+    Mounts:
+      /etc/app/config/db from app-db-secrets (ro)
+      /etc/app/config/objectstorage from app-objectstorage-secrets (ro)
+      /etc/app/config/runtime from rtp-shared-config (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  rtp-shared-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      runtime-platform-config
+    Optional:  true
+  app-db-secrets:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  b0c48fd9-d47f-4d3f-949c-73c6d3435010-db
+    Optional:    false
+  app-objectstorage-secrets:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  b0c48fd9-d47f-4d3f-949c-73c6d3435010-obj
+    Optional:    false
+QoS Class:       Burstable
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:          <none>
+
+
+Name:             loadtest-7469d4c585-9k7fm
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             scw-contentgrid-rtp-scw-sa-pool-eager-g-c8518a/172.16.16.7
+Start Time:       Mon, 24 Jun 2024 17:11:04 +0200
+Labels:           app.contentgrid.com/deployment-id=7901c7ba-0087-42e2-8721-27c3896fcf66
+                  app.contentgrid.com/service-type=api
+                  app.kubernetes.io/managed-by=contentgrid
+                  captain.contentgrid.com/resource-id=d5228ae2-1d57-4a5b-baa5-6878a6c92951
+                  pod-template-hash=7469d4c585
+Annotations:      prometheus.io/path: actuator/prometheus
+                  prometheus.io/port: 8081
+                  prometheus.io/scrape: true
+Status:           Running
+IP:               100.64.1.100
+IPs:
+  IP:           100.64.1.100
+Controlled By:  ReplicaSet/loadtest-7469d4c585
+Init Containers:
+  api-initcontainer:
+    Container ID:   containerd://82f3a72b408a4fba1003aded8117704d791d43be631feb5ed474e3d611ec3cb6
+    Image:          rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/sandbox-test-api:0.0.1-SNAPSHOT-1717491015
+    Image ID:       rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/sandbox-test-api@sha256:0e7667f847851d43c8718e4eff1b4fbb1ce516e067a6f91f2e7f51be252fa526
+    Port:           <none>
+    Host Port:      <none>
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Mon, 24 Jun 2024 17:11:06 +0200
+      Finished:     Mon, 24 Jun 2024 17:11:23 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      SPRING_CONFIG_IMPORT:              configtree:/etc/app/config/*/
+      SPRING_PROFILES_ACTIVE:            initContainer
+      CONTENTGRID_SYSTEM_DEPLOYMENTID:   fc4f113c-0145-4d6c-aa22-958c6480dca7
+      CONTENTGRID_SYSTEM_APPLICATIONID:  d5228ae2-1d57-4a5b-baa5-6878a6c92951
+    Mounts:
+      /etc/app/config/db from app-db-secrets (ro)
+      /etc/app/config/runtime from rtp-shared-config (ro)
+Containers:
+  api:
+    Container ID:   containerd://9e5e3d31c1584ebec52897eb93550fbaaf1f3931082c40147721f943ae671f20
+    Image:          rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/sandbox-test-api:0.0.1-SNAPSHOT-1717491015
+    Image ID:       rg.fr-par.scw.cloud/contentgrid-sandbox-userapps/sandbox-test-api@sha256:0e7667f847851d43c8718e4eff1b4fbb1ce516e067a6f91f2e7f51be252fa526
+    Ports:          8080/TCP, 8081/TCP
+    Host Ports:     0/TCP, 0/TCP
+    State:          Running
+      Started:      Mon, 24 Jun 2024 17:11:24 +0200
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     4
+      memory:  768Mi
+    Requests:
+      cpu:      5m
+      memory:   64Mi
+    Liveness:   http-get http://:management/actuator/health/liveness delay=0s timeout=1s period=10s #success=1 #failure=3
+    Readiness:  http-get http://:management/actuator/health/readiness delay=0s timeout=1s period=10s #success=1 #failure=3
+    Startup:    http-get http://:management/actuator/health/liveness delay=0s timeout=1s period=5s #success=1 #failure=60
+    Environment:
+      SPRING_DATASOURCE_HIKARI_MAXIMUMPOOLSIZE:  50
+      SPRING_CONFIG_IMPORT:                      configtree:/etc/app/config/*/
+      CONTENTGRID_SYSTEM_DEPLOYMENTID:           fc4f113c-0145-4d6c-aa22-958c6480dca7
+      CONTENTGRID_SYSTEM_APPLICATIONID:          d5228ae2-1d57-4a5b-baa5-6878a6c92951
+      CONTENTGRID_SYSTEM_POLICYPACKAGE:          contentgrid.userapps.xfc4f113c01454d6caa22958c6480dca7
+      AWS_REGION:                                <set to the key 'spring.content.s3.region' in secret 'd5228ae2-1d57-4a5b-baa5-6878a6c92951-obj'>  Optional: false
+      CONTENTGRID_EVENTS_WEBHOOKCONFIGURL:       http://api-d-fc4f113c-0145-4d6c-aa22-958c6480dca7.default.svc.cluster.local:8081/actuator/webhooks
+    Mounts:
+      /etc/app/config/db from app-db-secrets (ro)
+      /etc/app/config/objectstorage from app-objectstorage-secrets (ro)
+      /etc/app/config/runtime from rtp-shared-config (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  rtp-shared-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      runtime-platform-config
+    Optional:  true
+  app-db-secrets:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  d5228ae2-1d57-4a5b-baa5-6878a6c92951-db
+    Optional:    false
+  app-objectstorage-secrets:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  d5228ae2-1d57-4a5b-baa5-6878a6c92951-obj
+    Optional:    false
+QoS Class:       Burstable
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:          <none>

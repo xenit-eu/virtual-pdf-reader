@@ -1,4 +1,4 @@
-import * as pdfjs from 'pdfjs-dist';
+import { pdfjs } from 'react-pdf';
 import { MyPdfViewer } from "./components/MyPdfViewer";
 
 export type { MyPdfViewerProps} from "./components/MyPdfViewer";
