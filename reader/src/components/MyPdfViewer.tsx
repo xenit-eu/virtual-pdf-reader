@@ -1,7 +1,6 @@
-import { Document, Page } from 'react-pdf';
+import { Document, Page, pdfjs } from 'react-pdf';
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import { Range, defaultRangeExtractor, useVirtualizer } from '@tanstack/react-virtual'
-import { PDFDocumentProxy, PageViewport } from 'pdfjs-dist';
 import '@ungap/with-resolvers';
 
 import './myPdfViewer.css';
@@ -26,11 +25,15 @@ type ScaleState = {
 }
 type ScaleAction = { type: 'zoom', factor: number, targetOffset: number } | { type: 'clearOffset' }
 
+// if (window.hasOwnProperty('pdfjsLib') && (window as any).pdfjsLib!.hasOwnProperty('GlobalWorkerOptions') && (window as any).pdfjsLib.GlobalWorkerOptions.hasOwnProperty('workerSrc')) {
+//     pdfjs.GlobalWorkerOptions.workerSrc = (window as any).pdfjsLib.GlobalWorkerOptions.workerSrc;
+// }
+
 export const MyPdfViewer = (props: MyPdfViewerProps) => {
-    const [pageCount, setPageCount] = useState<number>();
+    const [pageCount, setPageCount] = useState<number>(1);
     const containerRef = useRef<HTMLDivElement|null>(null);
     const [containerWidth, setContainerWidth] = useState<number>(maxWidth);
-    const [viewports, setViewports] = useState<PageViewport[]>([]);
+    const [viewports, setViewports] = useState<pdfjs.PageViewport[]>([]);
     const visibleRangeRef = useRef<Range|null>(null);
 
     const scaleReducer = (state: ScaleState, action: ScaleAction): ScaleState => {
@@ -48,7 +51,7 @@ export const MyPdfViewer = (props: MyPdfViewerProps) => {
         }
     },[containerRef.current]);
 
-    const handleDocumentLoaded = (document: PDFDocumentProxy) => {
+    const handleDocumentLoaded = (document: pdfjs.PDFDocumentProxy) => {
         setPageCount(document.numPages);
         getMeasurementsFromDocument(document);
 
@@ -79,7 +82,7 @@ export const MyPdfViewer = (props: MyPdfViewerProps) => {
         }, []),
     })
 
-    const getMeasurementsFromDocument = (document: PDFDocumentProxy) => {
+    const getMeasurementsFromDocument = (document: pdfjs.PDFDocumentProxy) => {
         console.log('getting measurements')
         const range = [...Array(document.numPages).keys()]; // [0, 1, 2, 3, ...]
         const promises = range.map((i) => document.getPage(i + 1).then((page) => page.getViewport({ scale: 1 })));
